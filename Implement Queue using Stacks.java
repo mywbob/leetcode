@@ -46,5 +46,4 @@ class MyQueue {
             st2.push(st1.pop());
         }
     }
-	
 }

@@ -40,5 +40,4 @@ class MinStack {
             return stmin.peek();
         }
     }
-	
 }

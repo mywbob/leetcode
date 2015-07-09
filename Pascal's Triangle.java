@@ -30,9 +30,7 @@ public class Solution {
                 }
             }
             list.add(alist);
-        }
-        
-        
+        }       
         return list;
     }
 }

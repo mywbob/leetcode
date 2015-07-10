@@ -25,6 +25,20 @@ public class Solution {
         list.get(0).next = null;
         return list.get(list.size() -1);
     }
+	
+	//iteratively, important, o(n) time, o(1) space
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode prev = null;
+        ListNode next;
+        while (head != null) {
+            next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
 
     
     //recursively

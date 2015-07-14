@@ -31,7 +31,6 @@ public class Solution {
             walker = walker.next;
             if (runner == walker) return true;
         }
-        
         return false;
         
     }

@@ -12,6 +12,10 @@ For C programmers: Try to solve it in-place in O(1) space.
 /*
 how split() works?
 s+ and s diff
+
+remeber a b split by space = "a", "b"
+so " a" split by space = "", "a"
+termite at the deli or end of the string = > substring(somewhere, deli or end(not including)), then start from deli+1...
 */
 
 

@@ -2,6 +2,9 @@
 Given a binary tree, return the postorder traversal of its nodes' values.
 */
 
+/*
+why need visited?
+*/
 
 /**
  * Definition for a binary tree node.

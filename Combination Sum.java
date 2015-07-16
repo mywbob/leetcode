@@ -13,6 +13,11 @@ A solution set is:
 [2, 2, 3] 
 */
 
+/*
+    //1 input no dup
+    //2 not for 0 to n, for 0 to n case!, eg, first for 1, second for cannot be 0
+    //3 for i to n, for i to n case!
+*/
 
 public class Solution {
     public List<List<Integer>> res = new ArrayList<List<Integer>>();

@@ -16,6 +16,7 @@ Given target = 3, return true.
 */
 
 public class Solution {
+	//bs return index. when s>e, s is the insert position. s belongs [0, len_array]
     //bs, in an array, insert index when s > e is at s, how to prove? find all the cases. 1: s = e; 2: s + 1 = e....
     public boolean searchMatrix(int[][] matrix, int target) {
         int row = bs(0, matrix.length-1, matrix, target);

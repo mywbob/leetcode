@@ -12,6 +12,7 @@ Here are few examples.
 
 
 public class Solution {
+	//bs return index. when s>e, s is the insert position. s belongs [0, len_array]
     public int searchInsert(int[] nums, int target) {
         return bs(0, nums.length-1, target, nums);
     }

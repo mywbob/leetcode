@@ -13,6 +13,22 @@ Given an array where elements are sorted in ascending order, convert it to a hei
  * }
  */
 public class Solution {
+	public TreeNode sortedArrayToBST(int[] nums) {
+        if (nums == null || nums.length == 0) return null;
+        return build(0, nums.length-1, nums);
+        
+    }
+    
+    public TreeNode build(int s, int e, int[] nums) {
+        if (s > e) return null;
+        int mid = (s + e)/2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = build(s, mid-1, nums);
+        node.right = build(mid+1, e, nums);
+        return node;
+    }
+	
+	//old
     public TreeNode sortedArrayToBST(int[] nums) {
         if (nums == null || nums.length == 0) return null;
         return build(0, nums.length-1, nums);

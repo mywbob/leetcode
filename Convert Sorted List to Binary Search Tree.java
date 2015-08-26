@@ -21,6 +21,54 @@ Given a singly linked list where elements are sorted in ascending order, convert
  * }
  */
 public class Solution {
+	public TreeNode sortedListToBST(ListNode head) {
+	    if (head == null) return null;
+        ListNode index = head;
+        ListNode first;
+        ListNode second;
+        boolean flag = false;
+        
+        //find mid and cut list
+        int cnt = 0;
+        while (index != null) {
+            index = index.next;
+            cnt++;
+        }
+        index = head;
+        cnt =cnt/2;
+        
+        if (cnt == 0) flag = true;
+        while (cnt != 0) {
+            index = index.next;
+            cnt--;
+        }
+        
+        ListNode mid = index;
+        
+        if (!flag) {
+            index = head;
+            while (index.next != mid) {
+                index = index.next;
+            }
+            first = head;
+            index.next = null;//cut
+        } else {
+            first = null;
+        }
+        
+
+        
+        second = mid.next;
+        mid.next = null; //cut
+        
+        TreeNode node = new TreeNode(mid.val);
+        node.left = sortedListToBST(first);
+        node.right = sortedListToBST(second);
+        return node;
+    }
+	
+	
+	//old
     public TreeNode sortedListToBST(ListNode head) {
         if (head == null) return null;
         TreeNode mid;

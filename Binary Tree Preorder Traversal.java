@@ -26,6 +26,28 @@ Right child is pushed before left child to make sure that left subtree is proces
 
 
 public class Solution {
+	
+	//do not think about the recursion...just look at the stack
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        if (root == null) return res;
+        TreeNode cur = root;
+        while (true) {
+            if (cur != null) {
+                res.add(cur.val);
+                if (cur.right != null) {
+                    stack.push(cur.right);
+                }
+                cur = cur.left;
+            } else {
+                if (stack.isEmpty()) break;
+                cur = stack.pop();
+            }
+        }
+        return res;
+    }
+	
     public List<Integer> preorderTraversal(TreeNode root) {
         ArrayList<Integer> res = new ArrayList<Integer>();
         Stack<TreeNode> st = new Stack<TreeNode>();

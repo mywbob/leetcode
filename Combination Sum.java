@@ -20,31 +20,27 @@ A solution set is:
 */
 
 public class Solution {
-    public List<List<Integer>> res = new ArrayList<List<Integer>>();
-    List<Integer> ares = new ArrayList<Integer>();
+	List<List<Integer>> res = new ArrayList<List<Integer>>();
+    List<Integer> temp = new ArrayList<Integer>();
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        if (candidates == null || candidates.length == 0) return res;
         Arrays.sort(candidates);
-        dfs(candidates, 0, 0, target);
+        dfs(0, 0, target, candidates);
         return res;
     }
     
-    public void dfs(int[] candidates, int i, int sum, int target) {
+    public void dfs(int index, int sum, int target, int[] candidates) {
         if (sum == target) {
-            //add a res
-            res.add(new ArrayList<Integer>(ares));
-            //ares.remove(ares.size() - 1);
+            res.add(new ArrayList<Integer>(temp));
+            return;
+        }
+        if (sum > target) {
             return;
         }
         
-        if (sum > target) {//
-            return;
-        }
-
-        for (int index = i; index < candidates.length ; index++) {
-            ares.add(candidates[index]);
-            dfs(candidates, index, sum + candidates[index], target);
-            ares.remove(ares.size() - 1);
+        for (int i=index; i<candidates.length; i++) {
+            temp.add(candidates[i]);
+            dfs(i, sum+candidates[i], target, candidates);
+            temp.remove(temp.size()-1);
         }
     }
 }

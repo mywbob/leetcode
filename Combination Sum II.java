@@ -17,6 +17,39 @@ A solution set is:
 
 
 public class Solution {
+	Set<ArrayList<Integer>> set = new HashSet<ArrayList<Integer>>();
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    List<Integer> temp = new ArrayList<Integer>();
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        dfs(0,0,target,candidates);
+        return res;
+    }
+    
+    public void dfs(int index, int sum, int target, int[] candidates) {
+        if (sum == target) {
+            if (!set.contains(temp)) {
+                set.add(new ArrayList<Integer>(temp));
+                res.add(new ArrayList<Integer>(temp));
+                return;
+            }
+        }
+        if (sum > target) {
+            return;
+        }
+        
+        for (int i = index; i<candidates.length; i++) {
+            temp.add(candidates[i]);
+            dfs(i+1, sum+candidates[i], target, candidates);
+            temp.remove(temp.size()-1);
+        }
+    }
+	
+	
+	
+	
+	
+	//old code
     //need set to reduce dup
     //for i to n, i+i to n case
     //but be carefull who add 1

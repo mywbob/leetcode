@@ -12,6 +12,22 @@ Start by evaluating the widest container, using the first and the last line. All
 
 
 public class Solution {
+	public int maxArea(int[] height) {
+        int start = 0;
+        int end = height.length-1;
+        int max = 0;
+        while(start < end) {
+            max = Math.max(max, (end-start) * Math.min(height[start], height[end]));
+            if (height[start] < height[end]) {//equal, randomly pick one, why, this problem is hard to prove, like gas station...so just remember it
+                start++;
+            } else {
+                end--;
+            }
+        }
+        return max;
+    }
+	
+	//old
     public int maxArea(int[] height) {
         int start = 0;
         int end = height.length - 1;

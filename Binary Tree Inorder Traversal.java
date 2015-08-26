@@ -13,6 +13,29 @@ Given a binary tree, return the inorder traversal of its nodes' values.
  * }
  */
 public class Solution {
+	public List<Integer> inorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        List<Integer> res = new ArrayList<Integer>();
+        if (root == null) return res;
+        TreeNode cur = root;
+        boolean done = false;
+        while (!done) {//stop condition
+            if (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            } else {
+                if (stack.isEmpty()) { break;} //when stack empty and cur is null, all finished
+                
+                cur = stack.pop();
+                res.add(cur.val);
+                cur = cur.right;
+                
+            }
+        }
+        
+        return res;
+    }
+	
     public List<Integer> inorderTraversal(TreeNode root) {
         Stack<TreeNode> stack = new Stack<TreeNode>();
         List<Integer> res = new ArrayList<Integer>();

@@ -7,28 +7,25 @@ If you were only permitted to complete at most one transaction (ie, buy one and 
 
 
 
+
 public class Solution {
-    //1 bf, o(n*n)
-    //2 trans to maxsubarray, o(n)
+    //convert to max subarray problem
+    //its possible to replace changes with prices so no extra space
     public int maxProfit(int[] prices) {
-        if (prices == null || prices.length < 2) return 0;
+        if (prices == null || prices.length == 0) return 0;
         int[] changes = new int[prices.length-1];
-        for (int i=0; i< changes.length;i++) {
-            changes[i] = prices[i+1] - prices[i];
+        for (int i = 1; i<prices.length;i++) {
+            changes[i-1] = prices[i] - prices[i-1];
         }
-        
-        int max = 0;
         int sum = 0;
-        for (int i=0; i< changes.length; i++) {
-            if (sum + changes[i] < 0) {
-                sum = 0;
-            } else {
-                sum = sum + changes[i];
-            }
+        int max = 0;
+        for (int i=0; i<changes.length; i++) {
+            sum = sum + changes[i];
             max = Math.max(max, sum);
+            if (sum < 0) {
+                sum = 0;//reset
+            }
         }
-        
         return max;
-        
     }
 }

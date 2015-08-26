@@ -1,4 +1,14 @@
 public class Solution {
+	HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+    public int climbStairs(int n) {
+        if (n == 1 || n == 0) return 1;
+        if (map.containsKey(n)) return map.get(n);
+        else {
+            map.put(n, climbStairs(n-2) + climbStairs(n-1));
+        }
+        return map.get(n);
+    }
+	
     //bf n^2
     public int climbStairs(int n) {
         if (n == 0) return 0;

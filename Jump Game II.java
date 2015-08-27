@@ -13,6 +13,29 @@ The minimum number of jumps to reach the last index is 2. (Jump 1 step from inde
 
 
 public class Solution {
+	    public int jump(int[] nums) {
+        if (nums == null || nums.length == 0 || nums.length == 1) return 0;
+        int cnt = 1;
+        int s =0;
+        int e =nums[0];
+        int max = e;
+        if (max >= nums.length-1) return 1;
+        
+        while (s<=e) {
+            for (int j = s; j<=e; j++) {
+                max = Math.max(max, nums[j]+j);
+                if (max >= nums.length-1) return cnt+1;
+            }
+            s = e+1;
+            e = max;
+            cnt++;
+        }
+        
+        return -1; //cannot jump out
+        
+    }
+
+	//old
     public int jump(int[] nums) {
         if (nums == null || nums.length == 0) return -1;
         if (nums.length == 1) return 0;

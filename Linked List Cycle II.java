@@ -18,6 +18,27 @@ Can you solve it without using extra space?
  * }
  */
 public class Solution {
+	public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {//meet
+                slow = head;
+                while (fast != slow) {
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+                return fast;
+            }
+        }
+        
+        return null;
+        
+    }
+	
+	//old
     public ListNode detectCycle(ListNode head) {
         ListNode runner = head;
         ListNode walker = head;

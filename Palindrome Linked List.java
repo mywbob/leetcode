@@ -16,6 +16,49 @@ Could you do it in O(n) time and O(1) space?
  * }
  */
 public class Solution {
+	public boolean isPalindrome(ListNode head) {
+        if (head == null) return true;
+        if (head.next == null) return true;
+        //divide, find second half
+        ListNode fast = head;
+        ListNode slow = head;
+        ListNode cutpoint = null;
+        while (!(fast==null || fast.next== null)) {//easy to make mistakes
+            cutpoint = slow;
+            fast = fast.next.next;
+            slow = slow.next;
+            
+        }
+        cutpoint.next = null;//cut the list
+        ListNode newhead = slow;
+        
+        
+        //reverse second half, slow
+        ListNode perv = null;
+        ListNode cur = newhead;
+        ListNode next;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = perv;
+            perv = cur;
+            cur = next;
+        }
+        newhead = perv;
+        
+        //compare
+        ListNode index1 = head;
+        ListNode index2 = newhead;
+        while (index1 != null) {
+            if (index1.val != index2.val) return false;
+            index1 = index1.next;
+            index2 = index2.next;
+        }
+        return true;
+        
+    }
+	
+	
+	//old
     /*
     1: divide the list to two lists
     2: reverse one half

@@ -14,6 +14,26 @@ A = [3,2,1,0,4], return false.
 
 
 public class Solution {
+	
+	public boolean canJump(int[] nums) {
+        if (nums == null || nums.length == 0 || nums.length == 1) return true;
+        int max = nums[0];
+        int s = 0;
+        int e = max;
+        while (s <= e) {
+            for (int j=s; j<=e; j++) {
+                //update max
+                max = Math.max(max, nums[j]+j);
+                if (max >= nums.length-1) return true;
+            }
+            s = e+1;
+            e = max;
+        
+        }
+        return false;
+    }
+	
+	//old
     public boolean canJump(int[] nums) {
         if (nums == null || nums.length == 0) return false;
         if (nums.length == 1) return true;
@@ -31,11 +51,8 @@ public class Solution {
         }
         return false;
     }
-}
-*/
-
-public class Solution {
-    public boolean canJump(int[] A) {
+	
+	public boolean canJump(int[] A) {
         if (A == null || A.length == 0) return false;
         if (A.length == 1) return true;
         int max = A[0];

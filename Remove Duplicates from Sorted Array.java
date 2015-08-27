@@ -11,6 +11,18 @@ Your function should return length = 2, with the first two elements of nums bein
 
 
 public class Solution {
+	public int removeDuplicates(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+        int index = 0;
+        for (int i=1; i< nums.length; i++) {
+            if (nums[i] != nums[index]) {
+                nums[++index] = nums[i];
+            }
+        }
+        return index+1;
+    }
+	
+	//old
     //with extra space, use set
     //no extra space, this is sorted array
     public int removeDuplicates(int[] nums) {

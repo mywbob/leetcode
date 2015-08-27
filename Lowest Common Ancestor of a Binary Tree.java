@@ -33,6 +33,7 @@ For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another exa
 public class Solution {
 	
 	//assume q, p in the tree
+    //1: top down, four cases
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;
         if (root == q || root == p) return root;
@@ -43,6 +44,27 @@ public class Solution {
         else if (right == null && left == null) return null; 
         else return root;
         
+    }
+    
+    
+    //2: bf, count the nodes in the tree, assume q, p in the tree
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        if (root == q || root == p) return root;
+        if (count(root.left, p, q) == 2) {
+            return lowestCommonAncestor(root.left, p, q);
+        } else if (count(root.left, p, q) == 0) {
+            return lowestCommonAncestor(root.right, p, q);
+        } else {
+            return root;
+        }
+        
+    }
+    
+    public int count(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return 0;
+        if (root == q || root == p) return count(root.left, p, q) + count(root.right, p, q) + 1;
+        else return count(root.left, p, q) + count(root.right, p, q);
     }
 	
 	//old

@@ -31,6 +31,21 @@ For example, the lowest common ancestor (LCA) of nodes 5 and 1 is 3. Another exa
  2: cnt p, q = 0,1,2, then like bst case 
  */
 public class Solution {
+	
+	//assume q, p in the tree
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        if (root == q || root == p) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left == null && right != null) return right;
+        else if (right == null && left != null) return left;
+        else if (right == null && left == null) return null; 
+        else return root;
+        
+    }
+	
+	//old
     //1: o(n), p, q need to exist in this tree
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;

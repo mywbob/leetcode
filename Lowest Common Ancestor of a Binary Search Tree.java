@@ -34,6 +34,24 @@ For example, the lowest common ancestor (LCA) of nodes 2 and 8 is 6. Another exa
 */
 
 public class Solution {
+	//p, q in this tree or not? if can be null?
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null) return null;
+        if (root == q || root == p) return root;
+        if (root.val > Math.max(p.val, q.val)) {
+            return lowestCommonAncestor(root.left, p, q);
+        } 
+        if (root.val < Math.min(p.val, q.val)) {
+            return lowestCommonAncestor(root.right, p, q);
+        }
+        if (root.val > q.val && root.val < p.val || root.val > p.val && root.val < q.val) {//else
+            return root;
+        }
+        
+        return null;//never
+    }
+	
+	//old
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return null;
         if (q == null || p == null) return null;

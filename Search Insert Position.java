@@ -12,6 +12,44 @@ Here are few examples.
 
 
 public class Solution {
+	
+	//bs return index. when s>e, s is the insert position. s belongs [0, len_array]
+    public int searchInsert(int[] nums, int target) {
+        return bs(0, nums.length-1, nums, target);
+    }
+    
+    public int bs(int s, int e, int[] nums, int target) {
+        if (s > e) return s;
+        int mid = s + (e-s)/2;
+        if (nums[mid] == target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            return bs(mid+1, e, nums, target);
+        } else {
+            return bs(s, mid-1, nums, target);
+        }
+    }
+
+    
+    public int searchInsert(int[] nums, int target) {
+        int s = 0;
+        int e = nums.length-1;
+        while (s<=e) {
+            int mid = s + (e-s)/2;
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] < target) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+        
+        return s;
+    }
+	
+	
+	//old
 	//bs return index. when s>e, s is the insert position. s belongs [0, len_array]
     public int searchInsert(int[] nums, int target) {
         return bs(0, nums.length-1, target, nums);

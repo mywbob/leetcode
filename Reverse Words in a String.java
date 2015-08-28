@@ -20,6 +20,17 @@ termite at the deli or end of the string = > substring(somewhere, deli or end(no
 
 
 public class Solution {
+	public String reverseWords(String s) {
+        String[] sarr = s.split("\\s+");
+        String res = "";
+        for (int i=sarr.length-1; i>=0; i--) {
+            res = res + " " + sarr[i];
+        }
+        
+        return res.trim();
+    }
+	
+	//old
     public String reverseWords(String s) {
         String[] strs = s.split("\\s+");
         StringBuilder sb = new StringBuilder();

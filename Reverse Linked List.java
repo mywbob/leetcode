@@ -11,6 +11,37 @@ A linked list can be reversed either iteratively or recursively. Could you imple
  * }
  */
 public class Solution {
+
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next== null) return head;
+        ListNode perv = null;
+        ListNode next = null;
+        ListNode cur = head;
+        while (cur != null) {
+            next = cur.next;
+            cur.next = perv;
+            perv = cur;
+            cur = next;
+        }
+        return perv;
+    }
+
+    
+    //recur method review
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next== null) return head;
+        ListNode next = head.next;
+        head.next =null;
+        ListNode newhead = reverseList(next);
+        next.next = head;
+        return newhead;
+        
+    }
+	
+	
+	
+
+	//old
     //iteratively
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) return head;

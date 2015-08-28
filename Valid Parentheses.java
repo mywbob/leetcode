@@ -5,6 +5,22 @@ The brackets must close in the correct order, "()" and "()[]{}" are all valid bu
 */
 
 public class Solution {
+	public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        stack.push('a');
+        for (int i=0; i<s.length(); i++) {
+            if (stack.peek() == '(' && s.charAt(i) == ')' || stack.peek() == '[' && s.charAt(i) == ']' || stack.peek() == '{' && s.charAt(i) == '}') {
+                stack.pop();
+                
+            }
+            
+            else stack.push(s.charAt(i));
+        }
+        
+        return stack.peek() == 'a';
+    }
+	
+	//old
     public boolean isValid(String s) {
         Stack<Character> st = new Stack<Character>();
         st.push('t');//temp value

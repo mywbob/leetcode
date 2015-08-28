@@ -15,6 +15,36 @@ For the purpose of this problem, we define empty string as valid palindrome.
 
 
 public class Solution {
+	public boolean isPalindrome(String s) {
+        if (s == null) return true;
+        int start = 0;
+        int end = s.length()-1;
+        
+        while (start < end) {
+            while (start <= s.length()-1 && !isAlphanumeric(s.charAt(start))) {
+                start++;
+            }
+            
+            while (end >= 0 && !isAlphanumeric(s.charAt(end))) {
+                end--;
+            }
+            if (start > end) break;
+            if (!(s.charAt(start) == s.charAt(end) || Math.abs(s.charAt(start) - s.charAt(end)) == Math.abs('Z' - 'z'))) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+    
+    public boolean isAlphanumeric(char c) {
+        if (c >= '0' && c <= '9' || c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') return true;
+        return false;
+        
+    }
+	
+	
     public boolean isPalindrome(String s) {
         //null
         if (s == null) return true;

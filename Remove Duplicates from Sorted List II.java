@@ -21,6 +21,38 @@ Given 1->1->1->2->3, return 2->3.
  find new value, check if dup, if no, add, if so, repeat
  */
 public class Solution {
+	public ListNode deleteDuplicates(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode dummy = new ListNode(0);
+        ListNode index = dummy;
+        ListNode index1 = head;
+        ListNode index2 = head.next;
+        while (index2 != null) {
+            if (index1.val != index2.val) {
+                index.next = index1;
+                index = index.next;
+                index1 = index2;
+                index2 = index2.next;
+            } else {//find not equal
+                while (index2 != null && index1.val == index2.val) {//care exp
+                    index2 = index2.next;
+                }
+                if (index2 == null) break;
+                index1 = index2;
+                index2 = index2.next;
+            }
+        }
+        
+        //last
+        if (index1.next == null) index.next = index1;
+        else index.next = null;
+        
+        return dummy.next;
+    }
+	
+	
+	
+	//old
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode dummyhead = new ListNode(Integer.MIN_VALUE);

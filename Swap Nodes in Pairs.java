@@ -21,6 +21,29 @@ Your algorithm should use only constant space. You may not modify the values in 
  //1:most easiest way, swap value
  //2 swap node
 public class Solution {
+	public ListNode swapPairs(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode index1 = head;
+        ListNode index2 = head.next;
+        ListNode dummy = new ListNode(0);
+        ListNode index = dummy;
+        while (index1 != null && index2 != null) {
+            index1.next = index2.next;
+            index2.next = index1;
+            index.next = index2;
+            
+            index = index1;
+            index1 = index1.next;
+            if (index1 == null) break;
+            index2 = index1.next;
+
+        }
+        
+        
+        return dummy.next;
+    }
+	
+	
     public ListNode swapPairs(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode dummy = new ListNode(0);

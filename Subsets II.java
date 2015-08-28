@@ -1,4 +1,40 @@
 public class Solution {
+	//check how why set of arraylist integer work, need a compare thing for list of int?
+    Set<ArrayList<Integer>> set = new HashSet<ArrayList<Integer>>();
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    List<Integer> temp = new ArrayList<Integer>();
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        for (int i=1; i<=nums.length; i++) {
+            combine(i, 0, nums);
+        }
+        res.add(new ArrayList<Integer>());
+        return res;
+    }
+    
+    public void combine(int k, int j, int[] nums) {
+        if (temp.size() == k) {
+            if (!set.contains(temp)) {
+                res.add(new ArrayList<Integer>(temp));
+                set.add(new ArrayList<Integer>(temp));
+            }
+            return;
+        }
+        
+        for (int i= j; i<nums.length; i++) {
+            temp.add(nums[i]);
+            combine(k, i+1, nums);
+            temp.remove(temp.size() - 1);
+        }
+    }
+	
+	
+	
+	
+	
+	
+	
+	//old
     HashSet<List<Integer>> set = new HashSet<List<Integer>>();
     List<List<Integer>> res = new ArrayList<List<Integer>>();
     public List<List<Integer>> subsetsWithDup(int[] nums) {

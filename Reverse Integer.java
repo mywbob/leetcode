@@ -18,6 +18,31 @@ For the purpose of this problem, assume that your function returns 0 when the re
 
 
 public class Solution {
+	public int reverse(int x) {
+        boolean pos = false;
+        if (x >= 0) pos = true; 
+        long temp = Math.abs((long)x);
+        long newnum = 0;
+        while (temp != 0) {
+            long bit = temp % 10;
+            newnum = 10 * newnum + bit;
+            temp = temp / 10;
+        }
+        
+        if (pos) {
+            if (newnum > Integer.MAX_VALUE) return 0;
+            else return (int)newnum;
+        } else {
+            if (-newnum < Integer.MIN_VALUE) return 0;
+            else return (int)(-newnum);
+        }
+        
+    }
+	
+	
+	
+	
+	//old
     //sign
     //overflow
     public int reverse(int x) {

@@ -12,6 +12,47 @@ convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 */
 
 public class Solution {
+	public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+        List<List<Character>> res = new ArrayList<List<Character>>();
+        for (int i=0; i<numRows; i++) {
+            res.add(new ArrayList<Character>());
+        }
+        int index = 0;
+        boolean plus = true;
+        for (int i=0; i<s.length(); i++) {
+            res.get(index).add(s.charAt(i));
+            if (index== 0) {
+                plus = true;
+            }
+            
+            if (index == numRows-1) {
+                plus = false;
+            }
+            
+            if (plus) {
+                index++;
+            } else {
+                index--;
+            } 
+        }
+        
+        String t = "";//stringbuilder is better
+        for (List<Character> l : res) {
+            for (char c : l) {
+                t = t+c;
+            }
+        }
+        return t;
+    }
+	
+	
+	
+	
+	
+	
+	
+	//old
     public String convert(String s, int numRows) {
         if (numRows == 1) return s;//care!
         ArrayList<ArrayList<Character>> table = new ArrayList<ArrayList<Character>>();

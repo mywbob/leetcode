@@ -16,6 +16,40 @@ Given target = 3, return true.
 */
 
 public class Solution {
+	public boolean searchMatrix(int[][] matrix, int target) {
+        int row = bsInsertRow(0, matrix.length-1, target, matrix);
+        if (row < matrix.length && matrix[row][0] == target) return true;
+        row = row-1;
+        if (row < 0) return false;
+        return bsCol(0, matrix[0].length-1, row, target, matrix);
+    }
+    
+    public int bsInsertRow(int s, int e, int target, int[][] matrix) {
+        if (s > e) return s;
+        int mid = (s + e) / 2;
+        if (matrix[mid][0] == target) {
+            return mid;
+        } else if (matrix[mid][0] > target) {
+            return bsInsertRow(s, mid-1, target, matrix);
+        } else {
+            return bsInsertRow(mid+1, e, target, matrix);
+        }
+    }
+    
+    public boolean bsCol(int s, int e, int r, int target, int[][] matrix) {
+        if (s > e) return false;
+        int mid = (s + e) / 2;
+        if (matrix[r][mid] == target) {
+            return true;
+        } else if (matrix[r][mid] > target) {
+            return bsCol(s, mid-1, r, target, matrix);
+        } else {
+            return bsCol(mid+1, e, r, target, matrix);
+        }
+    }
+	
+	
+	//old
 	//bs return index. when s>e, s is the insert position. s belongs [0, len_array]
     //bs, in an array, insert index when s > e is at s, how to prove? find all the cases. 1: s = e; 2: s + 1 = e....
     public boolean searchMatrix(int[][] matrix, int target) {

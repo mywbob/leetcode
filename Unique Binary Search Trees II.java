@@ -26,9 +26,41 @@ Given n = 3, your program should return all 5 unique BST's shown below.
  
  //how can i figure out the helper need start end as args? how to figure out the end condition?
 public class Solution {
+	public List<TreeNode> generateTrees(int n) {
+        return build(1,n);
+    }
+    
+    public List<TreeNode> build(int s, int e) {
+        List<TreeNode> res = new ArrayList<TreeNode>();
+        if (s>e) {
+            res.add(null);//this is important
+            return res;
+        }
+        
+        for (int i = s; i<=e; i++) {
+            List<TreeNode> left = build(s,i-1);
+            List<TreeNode> right = build(i+1,e);
+            for (TreeNode l : left) {
+                for (TreeNode r: right) {
+                    TreeNode root = new TreeNode(i);//new root here
+                    root.left = l;
+                    root.right = r;
+                    res.add(root);
+                }
+            }
+        }
+        return res;
+    }
+	
+	
+	
+	
+	
+	
+	
+	
+//old
 public ArrayList<TreeNode> generateTrees(int n) {
-    // Start typing your Java solution below
-    // DO NOT write main() function
     return helper(1, n);
 }
 

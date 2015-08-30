@@ -21,6 +21,54 @@ All words contain only lowercase alphabetic characters.
 
 
 public class Solution {
+	//record visited at 1, not only 2, 2 has dup -> bug
+    public int ladderLength(String beginWord, String endWord, Set<String> wordDict) {
+        Queue<String> cur = new LinkedList<String>();
+        Queue<String> next = new LinkedList<String>();
+        Queue<String> temp;
+        Set<String> visited = new HashSet<String>();
+        int cnt = 1;
+        if (beginWord.equals(endWord)) return cnt;
+        cur.add(beginWord);
+        visited.add(beginWord);//1
+        while (!cur.isEmpty()) {
+            String curstr = cur.poll();
+            //visited.add(curstr); //2
+            
+            
+            for (int i=0; i<curstr.length(); i++) {
+                char[] curarr = curstr.toCharArray();
+                for (char c = 'a'; c<= 'z'; c++) {
+                    if (c != curarr[i]) {
+                        curarr[i] = c;
+                        String oneEdit = new String(curarr);
+                        if (oneEdit.equals(endWord)) {//hit
+                            return cnt+1;
+                        } else {
+                            if (wordDict.contains(oneEdit) && !visited.contains(oneEdit)) {
+                                next.add(oneEdit);
+                                visited.add(oneEdit);//1
+                            }
+                    
+                        }
+                    }
+                }
+            }
+            
+        
+            if (cur.isEmpty()) {//swap queue
+                temp = next;
+                next = cur;
+                cur = temp;
+                
+                cnt++;
+            }
+        }
+        
+        return 0;
+    }
+	
+	//old
     //label visited
     Set<String> hs = new HashSet<String>();
     public int ladderLength(String beginWord, String endWord, Set<String> wordDict) {

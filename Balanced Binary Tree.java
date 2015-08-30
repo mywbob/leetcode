@@ -18,6 +18,22 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
  //1 bf, o(n*n), height call on every node repeatly
  //2 reduce the number of heigth call, check height while check if it is balanced, return -1 if not, o(n)
 public class Solution {
+	public boolean isBalanced(TreeNode root) {
+        if (height(root) == -1) return false;
+        else return true;
+    }
+    
+    public int height(TreeNode root) {
+        if (root == null) return 0;
+        int left = height(root.left);
+        int right = height(root.right);
+        if (left == -1 || right == -1) return -1;
+        if (Math.abs(left-right) > 1) return -1;
+        else return Math.max(left, right) +1;
+    }
+	
+	
+	//old
     //1 bf
     public boolean isBalanced(TreeNode root) {
         if (root == null) return true;

@@ -6,17 +6,20 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 
 
 public class Solution {
-    //convert the array, add all positive numbers
+    //sum all pos numbers in changes[]
     public int maxProfit(int[] prices) {
-        if (prices == null || prices.length < 2) return 0;
+        if (prices == null || prices.length==0) return 0;
         int[] changes = new int[prices.length-1];
-        for (int i=0; i< prices.length-1;  i++) {
+        for (int i=0; i<changes.length; i++ ) {
             changes[i] = prices[i+1] - prices[i];
-        } 
-        int max = 0;
-        for (int i=0; i< changes.length; i++) {
-            if (changes[i] > 0) max = max + changes[i];
         }
-        return max;
+        
+        int sum=0;
+        for (int i =0; i<changes.length; i++) {
+            if (changes[i]>0) sum = sum + changes[i];
+        }
+        
+        return sum;
+        
     }
 }

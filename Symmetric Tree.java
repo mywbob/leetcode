@@ -30,16 +30,14 @@ But the following is not:
 public class Solution {
     public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;
-        return isSymmetricSubTree(root.left, root.right);
+        return check(root.left, root.right);
     }
     
-    public boolean isSymmetricSubTree(TreeNode node1, TreeNode node2) {
-        if (node1 == null && node2 == null) return true;
-        if (node1 == null && node2 != null) return false;
-        if (node1 != null && node2 == null) return false;
-        if (node1 !=null && node2 != null) {
-            if (node1.val != node2.val) return false;
-        }
-        return isSymmetricSubTree(node1.left, node2.right) && isSymmetricSubTree(node1.right, node2.left);
+    public boolean check(TreeNode l, TreeNode r) {
+        if (l == null && r == null) return true;
+        if (l == null && r != null) return false;
+        if (l != null && r == null) return false; 
+        if (l.val != r.val) return false;
+        return check(l.left, r.right) && check(l.right, r.left);
     }
 }

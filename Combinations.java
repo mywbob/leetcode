@@ -16,14 +16,14 @@ If n = 4 and k = 2, a solution is:
 
 
 public class Solution {
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    List<Integer> ares = new ArrayList<Integer>();
     public List<List<Integer>> combine(int n, int k) {
-        List<List<Integer>> res = new ArrayList<List<Integer>>();
-        List<Integer> ares = new ArrayList<Integer>();
-        dfs(1, n, k, res, ares);
+        dfs(1,k,n);
         return res;
     }
     
-    public void dfs(int index, int n, int k, List<List<Integer>> res, List<Integer> ares) {
+    public void dfs(int index, int k, int n) {
         if (ares.size() == k) {
             res.add(new ArrayList<Integer>(ares));
             return;
@@ -31,8 +31,8 @@ public class Solution {
         
         for (int i=index; i<=n; i++) {
             ares.add(i);
-            dfs(i+1, n, k, res, ares);
-            ares.remove(ares.size() - 1);
+            dfs(i+1, k, n);
+            ares.remove(ares.size()-1);
         }
         
     }

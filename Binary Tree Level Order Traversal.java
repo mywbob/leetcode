@@ -28,37 +28,34 @@ return its level order traversal as:
  */
 public class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> res =new  ArrayList<List<Integer>>();
-        List<Integer> alist = new ArrayList<Integer>();
-        Queue<TreeNode> curr = new LinkedList<TreeNode>();
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> ares = new ArrayList<Integer>();
+        Queue<TreeNode> cur = new LinkedList<TreeNode>();
         Queue<TreeNode> next = new LinkedList<TreeNode>();
-        Queue<TreeNode> temp = new LinkedList<TreeNode>();
+        Queue<TreeNode> temp = null;
+        
         if (root == null) return res;
-        curr.add(root);
-        
-        
-        while (!curr.isEmpty()) {
-            TreeNode node = curr.poll();
-            alist.add(node.val);
-            if (node.left != null) {
+        cur.add(root);
+        while (!cur.isEmpty()) {
+            TreeNode node = cur.poll();
+            ares.add(node.val);
+            if (node.left!= null) {
                 next.add(node.left);
-                
             }
-            if (node.right != null) {
+            
+            if (node.right!=null) {
                 next.add(node.right);
             }
             
-            if (curr.isEmpty()) {
-                temp = curr;
-                curr = next;
+            if (cur.isEmpty()) {
+                temp = cur;
+                cur = next;
                 next = temp;
-                res.add(new ArrayList<Integer>(alist));
-                alist.clear();
+                res.add(new ArrayList<Integer>(ares));
+                ares.clear();
             }
-            
         }
         
         return res;
-        
     }
 }

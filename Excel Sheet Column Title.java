@@ -14,6 +14,7 @@ For example:
 
 public class Solution {
 	
+	
     public String convertToTitle(int n) {
         int bit;
         StringBuilder sb = new StringBuilder();

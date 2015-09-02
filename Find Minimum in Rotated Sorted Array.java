@@ -29,5 +29,6 @@ public class Solution {
         } else {//right in order
             return bs(s, mid-1, nums);
         }
+		
     }
 }

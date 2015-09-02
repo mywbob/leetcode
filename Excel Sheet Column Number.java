@@ -15,6 +15,16 @@ For example:
 */
 
 public class Solution {
+	public int titleToNumber(String s) {    
+        int res = 0;
+        for (int i=0; i<s.length(); i++) {
+            res = 26 * res + (int)(s.charAt(i) - 'A') + 1;
+        }
+        return res;
+        
+    }
+	
+	//old
     public int titleToNumber(String s) {
         int res = 0;
         int mul = 1;

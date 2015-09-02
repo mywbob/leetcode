@@ -19,27 +19,24 @@ You may assume that duplicates do not exist in the tree.
  */
 public class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        
-        TreeNode root;
-        if (preorder.length == 0) return null;
-        else root = new TreeNode(preorder[0]);
-        
-        //find point
-        int point = 0;
-        while (inorder[point] != preorder[0]) {
-            point++;
+        if (inorder == null || inorder.length == 0) return null;
+        TreeNode root = new TreeNode(preorder[0]);
+
+        int p =0;
+        while (inorder[p] != preorder[0]) {
+            p++;
         }
         
+        int[] inorderL = Arrays.copyOfRange(inorder, 0, p);
+        int[] preorderL = Arrays.copyOfRange(preorder, 1, p+1);
+        int[] inorderR = Arrays.copyOfRange(inorder, p+1, inorder.length);
+        int[] preorderR = Arrays.copyOfRange(preorder,p+1, preorder.length);
         
+        TreeNode left = buildTree(preorderL, inorderL);
+        TreeNode right = buildTree(preorderR, inorderR);
         
-        int[] leadingpreorder = Arrays.copyOfRange(preorder, 1, point+1);
-        int[] tailingpreorder = Arrays.copyOfRange(preorder, point+1, preorder.length);
-        int[] leadinginorder = Arrays.copyOfRange(inorder, 0, point+1);
-        int[] tailinginorder =Arrays.copyOfRange(inorder, point+1, inorder.length);
-        
-        
-        root.left = buildTree(leadingpreorder, leadinginorder);
-        root.right = buildTree(tailingpreorder, tailinginorder);
+        root.left = left;
+        root.right = right;
         
         return root;
     }

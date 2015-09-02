@@ -17,18 +17,18 @@ Return: 1 --> 2 --> 3 --> 4 --> 5
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
         if (head == null) return null;
-        ListNode dummyhead = new ListNode(0);
-        ListNode node = head;
-        ListNode temp = dummyhead;
-        while (node != null) {
-            if (node.val != val) {
-                temp.next = node;
-                temp = node;
-            } 
-            node = node.next;
-            
+        ListNode dummy = new ListNode(0);
+        ListNode index = dummy;
+        while (head != null) {
+            if (head.val != val) {
+                index.next = head;
+                index = index.next;
+            }
+            head = head.next;
         }
-        temp.next = null;//do not forget this
-        return dummyhead.next;   
+        index.next = null;
+        
+        
+        return dummy.next;
     }
 }

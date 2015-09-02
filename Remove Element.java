@@ -7,12 +7,10 @@ The order of elements can be changed. It doesn't matter what you leave beyond th
 
 public class Solution {
     public int removeElement(int[] nums, int val) {
-        if (nums == null || nums.length == 0) return 0;
         int index = 0;
-        for (int i=0; i<nums.length; i++) {
+        for (int i=0; i< nums.length; i++) {
             if (nums[i] != val) {
-                nums[index] = nums[i];
-                index++;
+                nums[index++] = nums[i];
             }
         }
         return index;

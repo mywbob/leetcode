@@ -17,24 +17,28 @@ You may assume that duplicates do not exist in the tree.
  */
 public class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-        if (postorder.length == 0) return null;
-        TreeNode root = new TreeNode(postorder[postorder.length - 1]);
-
-        int point = inorder[0];
-        int i=0;
-        while (point != root.val) {
-            point = inorder[++i];
+        if (inorder == null || inorder.length == 0) return null;
+        TreeNode root = new TreeNode(postorder[postorder.length-1]);
+        
+        
+        int p =0;
+        while (inorder[p] != postorder[postorder.length-1]) {
+            p++;
         }
-        int[] inorderl = Arrays.copyOfRange(inorder, 0 , i);
-        int[] postorderl = Arrays.copyOfRange(postorder, 0 , i);
-        int[] inorderr = Arrays.copyOfRange(inorder, i+1, inorder.length);
-        int[] postorderr = Arrays.copyOfRange(postorder, i, postorder.length-1);
         
         
-        TreeNode left = buildTree(inorderl, postorderl);
-        TreeNode right = buildTree(inorderr, postorderr);
+        int[] inorderL = Arrays.copyOfRange(inorder, 0, p);
+        int[] postorderL = Arrays.copyOfRange(postorder, 0, p);
+        int[] inorderR = Arrays.copyOfRange(inorder, p+1, inorder.length);
+        int[] postorderR = Arrays.copyOfRange(postorder,p, postorder.length-1);
+        
+        
+        TreeNode left = buildTree(inorderL, postorderL);
+        TreeNode right = buildTree(inorderR, postorderR);
+        
         root.left = left;
         root.right = right;
+        
         return root;
     }
 }

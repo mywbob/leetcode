@@ -13,6 +13,26 @@ Example: 19 is a happy number
 
 
 public class Solution {
+	Set<Integer> set = new HashSet<Integer>();
+    public boolean isHappy(int n) {
+        while (n != 1) {
+            //get new number
+            int newnum = 0;
+            while (n > 0) {
+                int bit = n % 10;
+                newnum = newnum + bit * bit;
+                n = n / 10;
+            }
+            
+            if (set.contains(newnum)) return false;
+            else set.add(newnum);
+            n = newnum;
+        }
+        
+        return true;
+    }
+	
+	//old
     public boolean isHappy(int n) {
         HashSet<Integer> set = new HashSet<Integer>();
         set.add(n);

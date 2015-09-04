@@ -34,42 +34,42 @@ Your code should preferably run in O(n) time and use only O(1) memory.
  */
 public class Solution {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode l1 = headA;
-        ListNode l2 = headB;
-        int cnt1 = 0;
-        int cnt2 = 0;
-        while (l1 != null) {
-            l1 = l1.next;
-            cnt1++;
+        if (headA == null || headB == null) return null;
+        ListNode indexA = headA;
+        ListNode indexB = headB;
+        int cntA = 0;
+        int cntB = 0;
+        
+        while (indexA != null) {
+            indexA = indexA.next;
+            cntA++;
         }
         
-        while (l2 != null) {
-            l2 = l2.next;
-            cnt2++;
+        while (indexB != null) {
+            indexB = indexB.next;
+            cntB++;
         }
         
-        //l1 is the longer list
-        if (cnt1 < cnt2) {
-            l1 = headB;
-            l2 = headA;
+        int diff = cntA - cntB;
+        
+        if (diff < 0) {
+            indexA = headB;
+            indexB = headA;
         } else {
-            l1 = headA;
-            l2 = headB;
+            indexA = headA;
+            indexB = headB;
         }
-        
-        int diff = Math.abs(cnt1 - cnt2);
-        
-        while (diff != 0) {
-            l1 = l1.next;
+        diff = Math.abs(diff);
+        while (diff > 0) {
+            indexA = indexA.next;
             diff--;
         }
         
-        while (l1 != null) {
-            if (l1 == l2) return l1;
-            l1 = l1.next;
-            l2 = l2.next;
+        while (indexA != null) {
+            if (indexA == indexB) return indexA;
+            indexA = indexA.next;
+            indexB = indexB.next;
         }
-        
         return null;
         
     }

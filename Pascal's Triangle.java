@@ -16,21 +16,22 @@ Return
 
 public class Solution {
     public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> list = new ArrayList<List<Integer>>();
-        List<Integer> alist = new ArrayList<Integer>();
-        if (numRows == 0) return list;
-        alist.add(1);
-        list.add(alist);
-        for (int i=1; i<numRows;i++) {
-            alist = new ArrayList<Integer>();
+        List<List<Integer>> res  = new ArrayList<List<Integer>>();
+        if (numRows == 0) return res;
+        
+        for (int i=0; i<numRows; i++) {
+            ArrayList<Integer> temp = new ArrayList<Integer>();
             for (int j=0; j<=i; j++) {
-                if (j==0 || j==i) alist.add(1);
-                else {
-                    alist.add(list.get(i-1).get(j-1) + list.get(i-1).get(j));
+                if (j==0 || j== i) {
+                    temp.add(1);
+                } else {
+                    temp.add(res.get(i-1).get(j-1) + res.get(i-1).get(j));
                 }
             }
-            list.add(alist);
-        }       
-        return list;
+            
+            res.add(temp);
+        }
+        
+        return res;
     }
 }

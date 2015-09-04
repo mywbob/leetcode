@@ -8,12 +8,11 @@ For example, the 32-bit integer ’11' has binary representation 000000000000000
 public class Solution {
     // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
+        int mask = 0;
         int cnt = 0;
-        for (int i=0; i<=31; i++) {
-            int mask = 1 << i;
-            if ((mask & n) != 0) {
-                cnt++;
-            }
+        for (int i =0; i<32; i++) {
+            mask = 1 << i;
+            if ((mask & n) != 0) cnt++;
         }
         return cnt;
     }

@@ -5,6 +5,26 @@ You may assume that the array is non-empty and the majority element always exist
 */
 
 public class Solution {
+	public int majorityElement(int[] nums) {
+        int major = nums[0];
+        int cnt = 1;
+        for (int i=1; i<nums.length; i++) {
+            if (major == nums[i]) {
+                cnt++;
+            } else {
+                cnt--;
+            }
+            if(cnt<=0) {
+                major = nums[i+1];
+                cnt = 1;
+                i = i+1;
+            }
+        }
+        return major;
+    }
+	
+	
+	//old
     //1:easy count, o(n) space, o(n) time
     //2:bf, o(n*n)
     //3:o(logn), sort, the mid must be the res

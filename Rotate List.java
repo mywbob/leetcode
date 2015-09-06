@@ -19,36 +19,32 @@ return 4->5->1->2->3->NULL.
  */
 public class Solution {
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null) return head;
+        if (head == null) return null;
         ListNode index = head;
-        int cnt=0;
-        while ( index != null) {
-            index = index.next;
+        int cnt = 0;
+        while (index!=null) {
             cnt++;
+            index=index.next;
         }
-        
         k = k % cnt;
         if (k == 0) return head;
-        
-        k = cnt - k -1;
+
         index = head;
-        ListNode temp = null;
-        while (k!= 0) {
+        cnt = cnt-k-1;
+        while (cnt>0) {
             index = index.next;
-            k--;
+            cnt--;
         }
         
         ListNode newhead = index.next;
         index.next = null;
-        
         index = newhead;
-        while (index.next!= null) {
+        while (index.next != null) {
             index = index.next;
         }
-        index.next =head;
- 
-        
+        index.next = head;
         
         return newhead;
+        
     }
 }

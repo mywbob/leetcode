@@ -8,6 +8,31 @@ For example, given n = 3, a solution set is:
 
 
 public class Solution {
+	List<String> res = new ArrayList<String>();
+    public List<String> generateParenthesis(int n) {
+        gp(0,0,n,"");
+        return res;
+    }
+    
+    public void gp(int l, int r, int n, String temp) {
+        if (r == n) {
+            res.add(new String(temp));
+            return;
+        }
+        
+        if (l<n) {
+            gp(l+1, r, n, temp+"(");
+        }
+        
+        if (r<l) {
+            gp(l, r+1, n, temp+")");
+        }
+    }
+	
+	
+	
+	
+	//old
     public List<String> generateParenthesis(int n) {
         List<String> res = new ArrayList<String>();
         dfs(0,0, n, "",res);

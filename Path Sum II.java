@@ -28,33 +28,29 @@ return
  * }
  */
 public class Solution {
-    List<List<Integer>> res =new ArrayList<List<Integer>>();
-    List<Integer> temp = new ArrayList<Integer>();
+    List<List<Integer>> res = new ArrayList<List<Integer>>();
+    List<Integer> ares = new ArrayList<Integer>();
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         if (root == null) return res;
-        dfs(root, sum, temp, res);
+        dfs(root, sum);
         return res;
     }
     
-    public void dfs(TreeNode node, int sum,  List<Integer> temp, List<List<Integer>> res) {
-        temp.add(node.val); 
-        if (node.left == null && node.right == null) {
-            if (sum == node.val) {
-                res.add(new ArrayList<Integer>(temp));
-            }
+    public void dfs(TreeNode node, int sum) {
+        if (node == null) return;
+        ares.add(node.val);
+        
+        if (node.left == null && node.right == null && node.val == sum) {
+            res.add(new ArrayList<Integer>(ares));
             return;
         }
-        
         if (node.left != null) {
-            dfs(node.left, sum- node.val, temp, res);
-            temp.remove(temp.size() - 1);
+            dfs(node.left, sum-node.val);
+            ares.remove(ares.size()-1);
         }
-
         if (node.right != null) {
-            dfs(node.right, sum-node.val, temp, res);
-            temp.remove(temp.size() - 1);
+            dfs(node.right, sum-node.val);
+            ares.remove(ares.size()-1);
         }
-        
-    
     }
 }

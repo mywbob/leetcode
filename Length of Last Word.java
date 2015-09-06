@@ -12,6 +12,17 @@ return 5.
 
 
 public class Solution {
+	public int lengthOfLastWord(String s) {
+        if (s.length() == 0) return 0;
+        String[] sa = s.split("\\s+");
+        for (int i= sa.length-1; i>=0; i--) {
+            if (sa[i].length() != 0) return sa[i].length();
+        }
+        
+        return 0;
+    }
+	
+	
     //when last word does not exist? all white..
     public int lengthOfLastWord(String s) {
         String[] arr = s.split("\\s+");

@@ -9,27 +9,24 @@ public class Solution {
     public String longestPalindrome(String s) {
         String max = "";
         for (int i=0; i<s.length(); i++) {
-            
-            String temp = twoWay(i,i,s);
-            String temp1 = twoWay(i,i+1,s);
-            
-            int templen = temp.length();
-            int temp1len = temp1.length();
-            String t = "";
-            if (templen >= temp1len) t = temp;
-            else t = temp1;
-            
-            if (max.length() < t.length()) max = t;
+            String strOnNum = twoWayExt(i,i, s);
+            String strOnInter = twoWayExt(i, i+1,s);
+            //update
+            if (strOnNum.length() > strOnInter.length()) {
+                if (strOnNum.length() > max.length()) max = strOnNum;
+            } else {
+                if (strOnInter.length() > max.length()) max = strOnInter;
+            }   
         }
+        
         return max;
     }
     
-    public String twoWay(int l, int r, String s) {
-        while (l>=0 && r<s.length() && s.charAt(l) == s.charAt(r)) {
-            l--;
-            r++;
+    public String twoWayExt(int i, int j, String s) {
+        while (i>=0 && j<s.length() && s.charAt(i) == s.charAt(j)) {
+            i--;
+            j++;
         }
-        if (l == r-1) return "";
-        return s.substring(l+1,r);
+        return s.substring(i+1, j);
     }
 }

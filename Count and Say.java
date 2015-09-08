@@ -16,25 +16,24 @@ Note: The sequence of integers will be represented as a string.
 
 public class Solution {
     public String countAndSay(int n) {
-        String res = "1";
-        String temp;
         if (n == 1) return "1";
-        for (int i=2; i<=n; i++) {
-            temp = new String(res);
-            res = "";
-            int cnt = 0;
-            char bit = temp.charAt(0);
-            for (int j=0; j<temp.length(); j++) {
-                if (bit == temp.charAt(j)) {
+        String res = "1";
+        for (int i=1; i<n; i++) {
+            //cnt and build
+            int s = 0;
+            int e = 0;
+            
+            String temp = "";
+            while (e<res.length()) {
+                int cnt=0;
+                while (e<res.length() && res.charAt(s)== res.charAt(e)) {
                     cnt++;
-                    
-                } else {
-                    res = res + cnt + bit;
-                    bit = temp.charAt(j);
-                    cnt = 1;
+                    e++;
                 }
+                temp = temp + cnt + res.charAt(s);
+                s = e;
             }
-            res = res + cnt + bit;
+            res = temp;
         }
         
         return res;

@@ -8,23 +8,19 @@ The digits are stored such that the most significant digit is at the head of the
 
 public class Solution {
     public int[] plusOne(int[] digits) {
-        
+        int[] res = new int[digits.length+1];
+        int index = digits.length-1;
         int carry = 1;
-        for (int i=digits.length-1; i>=0; i--) {
-            digits[i] = digits[i] + carry;
-            
-            carry = digits[i] / 10;
-            digits[i] = digits[i] % 10;
-            
+        while (index>=0) {
+            int bit = (digits[index] + carry) % 10;
+            carry = (digits[index] + carry) / 10;
+            res[index+1] = bit;
+            index--;
         }
         
-        if (carry == 0) return digits;
+        if (carry == 0) return Arrays.copyOfRange(res, 1, res.length);
         else {
-            int[] res = new int[digits.length+1];
             res[0] = 1;
-            for (int i=1; i<res.length;i++) {
-                res[i] = digits[i-1];
-            }
             return res;
         }
     }

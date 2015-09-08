@@ -9,6 +9,31 @@ For example,
 
 
 public class Solution {
+	//slow
+	public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> ares = new ArrayList<Integer>();
+        if (nums.length == 0) return res;
+        ares.add(nums[0]);
+        res.add(new ArrayList<Integer>(ares));
+        for (int i=1; i<nums.length; i++) {//pick num
+            List<List<Integer>> temp = new ArrayList<List<Integer>>();
+            for (int j=0; j<res.size(); j++) {//pick list
+                for (int k=0; k<=res.get(j).size(); k++) {//pick pos
+                    List<Integer> atemp = new ArrayList<Integer>(res.get(j));
+                    atemp.add(k, nums[i]);
+                    temp.add(atemp);
+                }
+                
+            }
+            res = temp;
+        }
+        
+        return res;        
+        
+    }
+	
+	//old
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<List<Integer>>();
         List<Integer> temp = new ArrayList<Integer>();

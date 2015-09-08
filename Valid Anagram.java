@@ -16,11 +16,8 @@ public class Solution {
         char[] tt = t.toCharArray();
         Arrays.sort(ss);
         Arrays.sort(tt);
-        
-        s = String.valueOf(ss);
-        t = String.valueOf(tt);
-        if (s.equals(t)) return true;
-        
-        return false;
+        String sn = new String(ss);
+        String tn = new String(tt);
+        return sn.equals(tn);
     }
 }

@@ -17,16 +17,13 @@ Supposed the linked list is 1 -> 2 -> 3 -> 4 and you are given the third node wi
  */
 public class Solution {
     public void deleteNode(ListNode node) {
-        ListNode perv = null;
-        ListNode cur = node;
-        ListNode next = cur.next;
-        while (next!= null) {
-            cur.val = next.val;
-            perv = cur;
-            cur = next;
-            next = cur.next;
+        while (node.next != null) {
+            node.val = node.next.val;
+            if (node.next.next == null) {
+                node.next = null;
+                break;
+            }
+            node = node.next;
         }
-        //cur = null;//does not work!
-        perv.next = null;
     }
 }

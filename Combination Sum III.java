@@ -22,27 +22,25 @@ Output:
 */
 
 public class Solution {
-    Set<ArrayList<Integer>> set = new HashSet<ArrayList<Integer>>();
     List<List<Integer>> res = new ArrayList<List<Integer>>();
     List<Integer> temp = new ArrayList<Integer>();
     public List<List<Integer>> combinationSum3(int k, int n) {
-        dfs(1, k, n);
+        if (k == 0) return res;
+        dfs(1, k, n, n);
         return res;
     }
     
-    public void dfs(int index, int k, int n) {
-        if (temp.size()==k && n==0) {
-            if (!set.contains(temp)) {
-                res.add(new ArrayList<Integer>(temp));
-                set.add(new ArrayList<Integer>(temp));
-            }
+    public void dfs(int index, int k, int sum, int n) {
+        if (temp.size() == k && sum == 0) {
+            res.add(new ArrayList<Integer>(temp));
             return;
         }
-        if (temp.size()>k) return;
+        
+        if (sum < 0 || temp.size() > k) return;
         
         for (int i=index; i<=9; i++) {
             temp.add(i);
-            dfs(i+1, k, n-i);
+            dfs(i+1, k, sum-i, n);
             temp.remove(temp.size()-1);
         }
     } 

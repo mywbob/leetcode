@@ -6,6 +6,7 @@ For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
 
 
 public class Solution {
+	//easy to make mistakes
     public List<String> summaryRanges(int[] nums) {
         List<String> res = new ArrayList<String>();
         if (nums==null || nums.length==0) return res;

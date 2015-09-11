@@ -21,50 +21,49 @@ Answer: 3
 
 public class Solution {
     public int numIslands(char[][] grid) {
-        if (grid == null || grid.length==0) return 0;
+        if (grid.length == 0 ) return 0; 
         int cnt = 0;
-        boolean[][] visited = new boolean[grid.length][grid[0].length];
-        for (int i=0; i< grid.length; i++) {
+        int[][] visited = new int[grid.length][grid[0].length];
+        for (int i=0; i<grid.length; i++) {
             for (int j=0; j<grid[0].length; j++) {
-                if (visited[i][j] == false && grid[i][j] == '1') {
+                if (grid[i][j] == '1' && visited[i][j] != 1) {
                     cnt++;
-                    visited[i][j] = true;
+                    visited[i][j] = 1;
                     dfs(i,j,grid,visited);
                 }
             }
         }
+        
         return cnt;
     }
     
-    public void dfs(int r, int c, char[][] grid, boolean[][] visited) {
+    public void dfs(int r, int c, char[][] grid, int[][] visited) {
+        //left
+        if (valid(r,c-1, grid, visited)) {
+            visited[r][c-1] = 1;
+            dfs(r, c-1, grid, visited);
+        } 
         //top
-        if (valid(r-1,c,grid,visited)) {
-            visited[r-1][c] = true;
-            dfs(r-1,c,grid,visited);
-        }
+        if (valid(r-1,c, grid, visited)) {
+            visited[r-1][c] = 1;
+            dfs(r-1, c, grid, visited);
+        } 
+        
         //right
-        if (valid(r,c+1,grid,visited)) {
-            visited[r][c+1] = true;
-            dfs(r,c+1,grid,visited);
-        }
+        if (valid(r,c+1, grid, visited)) {
+            visited[r][c+1] = 1;
+            dfs(r, c+1, grid, visited);
+        } 
         
         //bot
-        if (valid(r+1,c,grid,visited)) {
-            visited[r+1][c] = true;
-            dfs(r+1,c,grid,visited);
-        }
-        
-        //left
-        if (valid(r,c-1,grid,visited)) {
-            visited[r][c-1] = true;
-            dfs(r,c-1,grid,visited);
-        }
+        if (valid(r+1,c, grid, visited)) {
+            visited[r+1][c] = 1;
+            dfs(r+1, c, grid, visited);
+        } 
     }
     
-    public boolean valid(int r, int c, char[][] grid, boolean[][] visited) {
-        if (r>=0 && r<grid.length && c >=0 && c<grid[0].length && visited[r][c] == false && grid[r][c] == '1') {
-            return true;
-        }
+    public boolean valid(int r, int c, char[][] grid, int[][] visited) {
+        if (r>=0 && r<grid.length && c>=0 && c<grid[0].length && visited[r][c] == 0 && grid[r][c] == '1') return true;
         return false;
     }
 }

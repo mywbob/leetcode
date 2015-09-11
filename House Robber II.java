@@ -7,36 +7,24 @@ Given a list of non-negative integers representing the amount of money of each h
 public class Solution {
     //two cases: rob the first, or not, then combine the org solution
     public int rob(int[] nums) {
-        if (nums == null || nums.length==0) return 0;
+        if (nums.length==0) return 0;
+        if (nums.length==1) return nums[0]; 
         //rob first
-        int robFirst = rob1(nums);
-        int noFirst = rob2(nums);
-        return Math.max(robFirst, noFirst);
-    }
-    
-    public int rob1(int[] nums) {
-        if (nums.length == 1) return nums[0];
-        if (nums.length == 2) return nums[0];
-        int[] dp = new int[nums.length-1];
-        dp[0] = nums[0];
-        dp[1] = nums[0];
-        for (int i=2; i<dp.length; i++) {
-            dp[i] = Math.max(dp[i-2]+nums[i], dp[i-1]);
-        }
+        int case1 = robIt(Arrays.copyOfRange(nums, 0, nums.length-1));
+        //do not rob first
+        int case2 = robIt(Arrays.copyOfRange(nums, 1, nums.length));
         
-        return dp[dp.length-1];
+        return Math.max(case1, case2);
     }
     
-    public int rob2(int[] nums) {
-        if (nums.length == 1) return 0;
-        if (nums.length == 2) return nums[1];
-        int[] dp = new int[nums.length];
+    public int robIt(int[] nums) {
+        if (nums.length == 0) return 0;
+        int[] dp = new int[nums.length+1];
         dp[0] = 0;
-        dp[1] = nums[1];
-        for (int i=2; i<dp.length; i++) {
-            dp[i] = Math.max(dp[i-2]+nums[i], dp[i-1]);
+        dp[1] = nums[0];
+        for (int i= 2; i<dp.length; i++) {
+            dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-1]);
         }
-        
         return dp[dp.length-1];
     }
 }

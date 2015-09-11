@@ -19,28 +19,20 @@ You may assume both s and t have the same length.
 
 public class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if (s == null || t == null) return false;
-        if (s.length()==0 && t.length()==0) return true;
-        HashMap<Character, Character> map = new HashMap<Character, Character>();
+        Map<Character, Character> map = new HashMap<Character, Character>();
         for (int i=0; i<s.length(); i++) {
             if (map.containsKey(s.charAt(i))) {
+                //check if same char map to one more chars
                 if (map.get(s.charAt(i)) != t.charAt(i)) return false;
             } else {
-                for (Character c: map.keySet()) {
-                    char value = map.get(c);
-                    if (t.charAt(i) == value) {//has been matched
-                        return false;
-                    }
+                //check if two chars map to same char
+                if (map.containsValue(t.charAt(i))) {
+                    return false;
+                } else {
+                    map.put(s.charAt(i), t.charAt(i));
                 }
-                map.put(s.charAt(i), t.charAt(i));//has not been matched
-                //containsValue method
-                /*
-                if(map.containsValue(t.charAt(i))) return false;
-                else map.put(s.charAt(i), t.charAt(i));
-                */
             }
         }
-        
         return true;
     }
 }

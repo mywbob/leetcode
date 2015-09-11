@@ -26,7 +26,6 @@ public class Solution {
         List<Integer> res = new ArrayList<Integer>();
         Queue<TreeNode> cur = new LinkedList<TreeNode>();
         Queue<TreeNode> next = new LinkedList<TreeNode>();
-        Queue<TreeNode> temp;
         if (root == null) return res;
         cur.add(root);
         while (!cur.isEmpty()) {
@@ -41,12 +40,14 @@ public class Solution {
             }
             
             if (cur.isEmpty()) {
-                temp = next;
-                next= cur;
-                cur = temp;
                 res.add(node.val);
+                Queue<TreeNode> temp = null;
+                temp = cur;
+                cur = next;
+                next = temp;
             }
         }
+        
         return res;
     }
 }

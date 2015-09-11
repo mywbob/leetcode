@@ -8,31 +8,27 @@ Given an array S of n integers, find three integers in S such that the sum is cl
 
 public class Solution {
     public int threeSumClosest(int[] nums, int target) {
-        if (nums == null || nums.length==0) return 0;
         Arrays.sort(nums);
-        int sum=0;
-        int res=0;
-        int minDiff = Integer.MAX_VALUE;
-        for (int i=0; i< nums.length-2; i++) {
-            int s = i+1;
-            int e=nums.length-1;
+        int diff = Integer.MAX_VALUE;
+        int res = 0;
+        for (int i =0; i<nums.length-2;i++) {
+            int s=i+1;
+            int e= nums.length-1;
+            
             while (s<e) {
-                int diff = Math.abs(nums[i] + nums[s] + nums[e] - target);
-                if (diff < minDiff) {
-                    minDiff = diff;
+                if (diff > Math.abs(nums[i] + nums[s] + nums[e] - target)) {
+                    diff = Math.abs(nums[i] + nums[s] + nums[e] - target);
                     res = nums[i] + nums[s] + nums[e];
                 }
-                    
-                if (nums[i] + nums[s] + nums[e] == target) return target;
-                else if (nums[i] + nums[s] + nums[e] < target) {
+                if (nums[i] + nums[s] + nums[e] == target) {
+                    return target;
+                } else if (nums[i] + nums[s] + nums[e] < target) {
                     s++;
                 } else {
                     e--;
                 }
-                
             }
         }
-        
         return res;
     }
 }

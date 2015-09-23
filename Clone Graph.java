@@ -33,6 +33,8 @@ Visually, the graph looks like the following:
  * };
  */
 public class Solution {
+	//init state is important
+	//syc orgCur and copyCur
     Set<UndirectedGraphNode> visited = new HashSet<UndirectedGraphNode>();
     Map<UndirectedGraphNode,UndirectedGraphNode> map = new HashMap<UndirectedGraphNode,UndirectedGraphNode>();
     public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {

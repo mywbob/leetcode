@@ -47,7 +47,6 @@ public class Solution {
             UndirectedGraphNode nodeCpy = map.get(nodeOrg);
             //visited.add(nodeOrg);//put here only is wrong such as, 3 connect to 4, (2 edges)
             
-
             for (UndirectedGraphNode nbs : nodeOrg.neighbors) {
                 if (!visited.contains(nbs)) {
                     queue.add(nbs);
